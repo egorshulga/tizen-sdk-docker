@@ -20,3 +20,17 @@ To use the image in Gitlab, `IPC_LOCK` capability should be added in runner conf
     cap_add = ["IPC_LOCK"]
     ...
 ```
+
+## Building Tizen web app
+
+Add author security profile for signing the application:
+
+```
+tizen security-profiles add --name <PROFILE_NAME> --ca <AUTHOR_CRT_PATH> --author <AUTHOR_P12_PATH> --password <AUTHOR_PASSWORD>
+```
+
+To pack `.wgt` (you may need to compile it first, e.g. if you use TypeScript):
+
+```
+tizen package --type wgt --sign <PROFILE_NAME> -- <SOURCES_ROOT>
+```
